@@ -51,6 +51,12 @@ function updateScore() {
     if (score % 10 === 0 && enemyCount < maxEnemies) {
         createEnemy();
     }
+
+    // Si se alcanza el tiempo de 100 segundos, detener el juego y mostrar mensaje
+    if (score >= 100) {
+        showCompletionMessage();
+        endGame();
+    }
 }
 
 // Función para crear un enemigo con movimiento continuo
@@ -80,22 +86,18 @@ function moveEnemy(enemy) {
         if (enemyRect.left <= containerRect.left || enemyRect.right >= containerRect.right) {
             xSpeed = -xSpeed;
             bounceCountX++;
-
-            // Si rebota en el mismo eje más de 3 veces seguidas, cambia el ángulo
             if (bounceCountX > 3) {
-                xSpeed += (Math.random() * 2 - 1); // Ajusta el ángulo ligeramente
-                bounceCountX = 0; // Reinicia el contador
+                xSpeed += (Math.random() * 2 - 1);
+                bounceCountX = 0;
             }
         }
 
         if (enemyRect.top <= containerRect.top || enemyRect.bottom >= containerRect.bottom) {
             ySpeed = -ySpeed;
             bounceCountY++;
-
-            // Si rebota en el mismo eje más de 3 veces seguidas, cambia el ángulo
             if (bounceCountY > 3) {
-                ySpeed += (Math.random() * 2 - 1); // Ajusta el ángulo ligeramente
-                bounceCountY = 0; // Reinicia el contador
+                ySpeed += (Math.random() * 2 - 1);
+                bounceCountY = 0;
             }
         }
 
@@ -115,12 +117,11 @@ function moveEnemy(enemy) {
 
 // Función para actualizar la posición del jugador de forma continua
 function updatePlayerPosition() {
-    if (!gameActive) return; // Detener movimiento si el juego no está activo
+    if (!gameActive) return;
 
     const playerRect = player.getBoundingClientRect();
     const containerRect = gameContainer.getBoundingClientRect();
 
-    // Mover en todas las direcciones
     if (keysPressed["ArrowUp"] && playerRect.top > containerRect.top) {
         player.style.top = (player.offsetTop - playerSpeed) + "px";
     }
@@ -134,10 +135,7 @@ function updatePlayerPosition() {
         player.style.left = (player.offsetLeft + playerSpeed) + "px";
     }
 
-    // Verifica la colisión después de mover al jugador
     checkCollision();
-
-    // Continua el ciclo de actualización
     requestAnimationFrame(updatePlayerPosition);
 }
 
@@ -160,21 +158,36 @@ function checkCollision() {
 
 // Función para finalizar el juego
 function endGame() {
-    gameActive = false; // Desactivar el juego
-    clearInterval(gameInterval); // Detener el intervalo de actualización de puntaje
+    gameActive = false;
+    clearInterval(gameInterval);
     startButton.style.display = "block";
     document.removeEventListener("keydown", movePlayer);
-    alert("¡Juego terminado! Tiempo de supervivencia: " + score + " segundos");
 
-    // Limpiar enemigos y vaciar el array de enemigos
     clearEnemies();
-    enemyCount = 1; // Reiniciar el contador de enemigos
+    enemyCount = 1;
+}
+
+// Función para mostrar el mensaje de finalización del juego
+function showCompletionMessage() {
+    const messageBox = document.createElement("div");
+    messageBox.textContent = "¡Has completado el juego!";
+    messageBox.style.position = "absolute";
+    messageBox.style.top = "50%";
+    messageBox.style.left = "50%";
+    messageBox.style.transform = "translate(-50%, -50%)";
+    messageBox.style.padding = "20px";
+    messageBox.style.backgroundColor = "#333";
+    messageBox.style.color = "#fff";
+    messageBox.style.fontSize = "1.5em";
+    messageBox.style.border = "2px solid #fff";
+    messageBox.style.borderRadius = "10px";
+    gameContainer.appendChild(messageBox);
 }
 
 // Función para limpiar enemigos del contenedor
 function clearEnemies() {
     enemies.forEach(enemy => enemy.remove());
-    enemies = [];  // Vaciar el array para que no queden referencias a enemigos anteriores
+    enemies = [];
 }
 
 // Evento para iniciar el juego al hacer clic en el botón de inicio
