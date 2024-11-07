@@ -65,8 +65,8 @@ function createEnemy() {
 
 // Función para mover el enemigo de forma continua y cambiar de dirección al chocar con los bordes
 function moveEnemy(enemy) {
-    let xSpeed = Math.random() * 3 + 1.5; // Velocidad horizontal
-    let ySpeed = Math.random() * 3 + 1.5; // Velocidad vertical
+    let xSpeed = Math.random() * 4 + 2; // Velocidad horizontal
+    let ySpeed = Math.random() * 4 + 2; // Velocidad vertical
     let bounceCountX = 0; // Contador de rebotes horizontales
     let bounceCountY = 0; // Contador de rebotes verticales
 
