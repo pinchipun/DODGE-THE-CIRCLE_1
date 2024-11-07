@@ -1,0 +1,85 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Helvetica', sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #2c3e50 25%, #34495e 100%);
+    background-attachment: fixed;
+    color: #ecf0f1;
+}
+
+#game-container {
+    position: relative;
+    width: 500px;
+    height: 500px;
+    background-color: rgba(44, 62, 80, 0.9);
+    border: 4px solid #ecf0f1;
+    border-radius: 15px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.7);
+    overflow: hidden;
+    text-align: center;
+}
+
+#score {
+    font-size: 1.5em;
+    margin: 20px 0;
+    color: #bdc3c7;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+#player {
+    width: 30px;
+    height: 30px;
+    background-color: #1abc9c;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    box-shadow: 0 0 15px rgba(26, 188, 156, 0.8);
+    transition: transform 0.1s ease-in-out;
+}
+
+.enemy {
+    width: 40px;
+    height: 40px;
+    background-color: #e74c3c;
+    position: absolute;
+    border-radius: 50%;
+    box-shadow: 0 0 15px rgba(231, 76, 60, 0.8);
+    transition: transform 0.1s ease-in-out;
+}
+
+.enemy:hover {
+    transform: scale(1.2);
+}
+
+#start-button {
+    padding: 10px 20px;
+    font-size: 1.2em;
+    cursor: pointer;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    transition: background-color 0.3s, transform 0.2s;
+    margin-top: 10px;
+}
+
+#start-button:hover {
+    background-color: #2980b9;
+    transform: scale(1.1);
+}
+
+#start-button:focus {
+    outline: none;
+}
