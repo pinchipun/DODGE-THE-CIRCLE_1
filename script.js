@@ -2,7 +2,7 @@ let score = 0;
 let enemies = [];
 let gameInterval;
 let enemyCount = 1;
-let maxEnemies = 25;
+let maxEnemies = 10;
 const playerSpeed = 7; // Ajusta la velocidad si es necesario
 const keysPressed = {}; // Para guardar el estado de las teclas presionadas
 let gameActive = false; // Indicador de si el juego está activo
