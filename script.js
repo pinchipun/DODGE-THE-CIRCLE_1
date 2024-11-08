@@ -2,7 +2,7 @@ let score = 0;
 let enemies = [];
 let gameInterval;
 let enemyCount = 1;
-let maxEnemies = 10;
+let maxEnemies = 25;
 const playerSpeed = 7; // Ajusta la velocidad si es necesario
 const keysPressed = {}; // Para guardar el estado de las teclas presionadas
 let gameActive = false; // Indicador de si el juego está activo
@@ -71,8 +71,8 @@ function createEnemy() {
 
 // Función para mover el enemigo de forma continua y cambiar de dirección al chocar con los bordes
 function moveEnemy(enemy) {
-    let xSpeed = Math.random() * 16 + 8; // Velocidad horizontal
-    let ySpeed = Math.random() * 16 + 8; // Velocidad vertical
+    let xSpeed = Math.random() * 4 + 2; // Velocidad horizontal
+    let ySpeed = Math.random() * 4 + 2; // Velocidad vertical
     let bounceCountX = 0; // Contador de rebotes horizontales
     let bounceCountY = 0; // Contador de rebotes verticales
 
